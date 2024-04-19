@@ -6,7 +6,6 @@ import rsa
 
 from pkidb.api import app
 
-
 RSA_KEYSIZE = 1024
 public_key, private_key = rsa.newkeys(RSA_KEYSIZE)
 

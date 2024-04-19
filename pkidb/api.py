@@ -1,9 +1,13 @@
+import sys
 from typing import Optional
 
 from flask import Flask, abort, jsonify, request
 
 from pkidb.data import Data
 from pkidb.db import FileDatabase
+
+DEFAULT_HOST = "0.0.0.0"
+DEFAULT_PORT = 8080
 
 app = Flask(__name__)
 db = FileDatabase()
@@ -47,5 +51,18 @@ def list(parent: Optional[str] = None) -> str:
     return jsonify(db.list(keylist))
 
 
+def main() -> None:
+    """Parse arguments and start Flask server."""
+    fn, *args = sys.argv
+    host, port = DEFAULT_HOST, DEFAULT_PORT
+
+    if len(args) == 1:
+        port = args[0]
+    elif len(args) >= 2:
+        host, port = args[0], args[1]
+
+    app.run(host, port)
+
+
 if __name__ == "__main__":
-    app.run()
+    main()

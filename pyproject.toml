@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pkidb"
+description = "Proof-of-concept PKI-based database."
+version = "1.0.0"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+  {name = "Zack Didcott"}
+]
+maintainers = [
+  {name = "Zack Didcott"}
+]
+dependencies = [
+  "Flask",
+  "rsa",
+  "python-benedict"
+]
+requires-python = ">= 3.9"
+
+[project.urls]
+Homepage = "https://github.com/Zedeldi/PKIDB"
+
+[project.scripts]
+pkidb-server = "pkidb.api:main"
